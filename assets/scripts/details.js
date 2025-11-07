@@ -8,35 +8,41 @@ const urlParameters = new URLSearchParams(url)
 const id = urlParameters.get('productId')
 console.log('ID', id)
 
-//Modifico un oggetto nell'API
+const getGuitars = function(){
+     
+    //Recuperiamo gli oggetti dall'API
     fetch(urlAPI + "/" + id, {
         headers: {
-            'Authorization': auth},
+            'Authorization': auth,},
     })
     .then((res) => {
         if(res.ok){
-            console.log('Prodotto recuperato!', res.json())
+            console.log('Chitarre recuperate!')
             return res.json()
         } else {
-            throw new Error(`Problem: ${res}`)
+            throw new Error(`${res}. Problema nel recupero dei dati.`)
         }
     })
-    .then((guitarDetails) => {
-        const detailsRow = document.getElementById('details-row')
-        console.log("Chitarra",guitarDetails)
-        detailsRow.innerHTML=`
-            <div class="col">
+    .then((guitar) =>{
+        console.log('Lista dei prodotti', guitar)
+        const guitarRow = document.getElementById('details-row')
+
+            guitarRow.innerHTML += `
+                <div class="col">
                 <div class="card h-100 d-flex flex-column">
                 <img src="${guitar.imageUrl}" class="card-img-top my-3" alt="guitar-image">
                 <div class="card-body flex-grow-1">
                     <h5 class="card-title">${guitar.name}</h5>
                     <p class="card-text">${guitar.description}</p>
                     <p class="card-text">€${guitar.price},00</p>
-                    <a href="./details.html?productId=${guitar._id}" class="btn btn-primary">Dettagli</a>
+                    <a href="./back-office.html?productId=${guitar._id}" class="btn btn-primary">Modifica</a>
                     </div>
                 </div>
-            </div>
-        `
+                </div>
+            `
     })
     .catch((err) => 
-        console.log('Problema nel recupero', err))
+        console.log('Problema nel recupero dei prodotti', err))
+}
+
+getGuitars()
