@@ -66,9 +66,34 @@ const deleteItem = function(id) {
         if(res.ok){
             console.log('Prodotto eliminato!')
         } else {
-            throw new Error(`Problem: ${res}`)
+            throw new Error(`Problem: ${res.status}`)
         }
     })
     .catch((err) => 
         console.log('Problema nell\'eliminazione', err))
+}
+
+const resetForm() = function (){
+    document.getElementById('product-form').reset()
+}
+
+//Recupero l'ID prodotto dall'url
+const url = location.search
+const urlParameters = new URLSearchParams(url)
+const id = urlParameters.get('productId')
+
+if(id){
+    fetch(urlAPI + "/" + id, {
+        headers: {
+            'Authorization': auth,},
+    })
+    .then((res) => {
+        if(res.ok){
+            console.log('Chitarre recuperate!')
+            return res.json()
+        } else {
+            throw new Error(`${res.status}. Problema nel recupero dei dati.`)
+        }
+    })
+    .then(())
 }
