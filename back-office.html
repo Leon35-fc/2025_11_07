@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crudazon</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  </head>
+  <body>
+    <header>
+        <h1 class="title text-danger bg-warning-subtle p-3">Crudazon</h1>
+    </header>
+    <main>
+        <section>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-4">
+                        <h2 class="title text-center border border-2 border-danger-subtle rounded-pill p-3 my-3">Admin page</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <section class="flex-grow-1">
+      <div class="container">
+        <div class="row justify-content-center my-3">
+          <div class="col col-12 col-md-8 col-lg-6">
+            <!-- FORM PER LA GESTIONE DEI PRODOTTI -->
+            <form id="product-form">
+              <!-- CAMPO NAME -->
+              <div class="mb-3">
+                <label for="name" class="form-label">Nome prodotto</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  required
+                />
+              </div>
+              <!-- CAMPO DESCRIPTION -->
+              <div class="mb-3">
+                <label for="description" class="form-label"
+                  >Descrizione articolo</label
+                >
+                <textarea
+                  class="form-control"
+                  id="description"
+                  aria-describedby="description-input"
+                  required
+                ></textarea>
+              </div>
+              <!-- CAMPO BRAND -->
+              <div class="mb-3">
+                <label for="brand" class="form-label">Nome brand</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="brand"
+                  aria-describedby="brand-input"
+                  required
+                />
+              </div>
+              <!-- CAMPO URL IMMMAGINE -->
+              <div class="mb-3">
+                <label for="image-url-input" class="form-label">Immagine articolo</label>
+                <div class="input-group form">
+                <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
+                <input type="text" class="form-control" id="image-url" aria-describedby="basic-addon3 basic-addon4" required>
+                </div>
+              </div>
+              <!-- CAMPO PRICE -->
+              <div class="mb-3">
+                <label for="price" class="form-label">Prezzo articolo</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="price"
+                  aria-describedby="price-input"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">INVIA</button>
+              <button type="submit" class="btn btn-primary">MODIFICA</button>
+              <button type="submit" class="btn btn-primary">CANCELLA</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    </main>
+    <footer></footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="./assets/scripts/back-office.js"></script>
+  </body>
+</html>
