@@ -29,7 +29,7 @@ const getGuitars = function(){
                     <a class="text-dark link-underline link-underline-opacity-0" href="./details.html?productId=${guitar._id}">
                         <img src="${guitar.imageUrl}" class="card-img-top my-2" alt="guitar-image" height="166px" >
                         <div class="card-body bg-dark-subtle row align-content-between m-0 p-0 pb-3">
-                        <div class="card-body col align-content-between">
+                        <div class="card-body col px-0">
                         <h5 class="card-title mb-3">${guitar.name}</h5>
                         <p class="card-text">${guitar.description}</p> 
                         </div>

@@ -30,7 +30,7 @@ const getGuitars = function(){
             guitarRow.innerHTML += `
                 <div class="col col-4">
                 <div class="card">
-                <img src="${guitar.imageUrl}" class="card-img-top w-100 my-3" alt="guitar-image">
+                <img src="${guitar.imageUrl}" class="card-img-top w-100 my-" alt="guitar-image">
                 <div class="card-body bg-dark-subtle">
                     <h5 class="card-title">${guitar.name}</h5>
                     <p class="card-text">${guitar.description}</p>

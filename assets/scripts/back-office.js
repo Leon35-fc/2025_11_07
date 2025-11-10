@@ -43,7 +43,6 @@ form.addEventListener('submit', (e) => {
     })
     .then((res) => {
         if(res.ok){
-
             id ? alert('Prodotto modificato!') : alert('Prodotto salvato!') 
             form.reset()
         } else {
