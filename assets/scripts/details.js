@@ -28,10 +28,10 @@ const getGuitars = function(){
         const guitarRow = document.getElementById('details-row')
 
             guitarRow.innerHTML += `
-                <div class="col">
-                <div class="card h-100 d-flex flex-column">
-                <img src="${guitar.imageUrl}" class="card-img-top my-3" alt="guitar-image">
-                <div class="card-body flex-grow-1">
+                <div class="col col-4">
+                <div class="card">
+                <img src="${guitar.imageUrl}" class="card-img-top w-100 my-3" alt="guitar-image">
+                <div class="card-body bg-dark-subtle">
                     <h5 class="card-title">${guitar.name}</h5>
                     <p class="card-text">${guitar.description}</p>
                     <p class="card-text">€${guitar.price},00</p>

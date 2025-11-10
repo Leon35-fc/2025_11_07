@@ -25,15 +25,21 @@ const getGuitars = function(){
         listOfGuitars.forEach((guitar) => {
             guitarRow.innerHTML += `
                 <div class="col">
-                <div class="card h-100 d-flex flex-column">
-                <img src="${guitar.imageUrl}" class="card-img-top my-3" alt="guitar-image">
-                <div class="card-body flex-grow-1">
-                    <h5 class="card-title">${guitar.name}</h5>
-                    <p class="card-text">${guitar.description}</p>
-                    <p class="card-text">€${guitar.price},00</p>
-                    <a href="./details.html?productId=${guitar._id}" class="btn btn-primary">Dettagli</a>
+                    <div class="card h-100 d-flex flex-column pt-0">
+                    <a class="text-dark link-underline link-underline-opacity-0" href="./details.html?productId=${guitar._id}">
+                        <img src="${guitar.imageUrl}" class="card-img-top my-2" alt="guitar-image" height="166px" >
+                        <div class="card-body bg-dark-subtle row align-content-between m-0 p-0 pb-3">
+                        <div class="card-body col align-content-between">
+                        <h5 class="card-title mb-3">${guitar.name}</h5>
+                        <p class="card-text">${guitar.description}</p> 
+                        </div>
+                        <div class="card-body>
+                        <p class="card-text">${guitar.price},00 €</p>
+                        <a href="./back-office.html?productId=${guitar._id}" class="btn btn-primary">Modifica</a>
+                        </div>
+                        </div>
+                        </a
                     </div>
-                </div>
                 </div>
             `
         })

@@ -20,7 +20,7 @@ const form = document.getElementById('product-form')
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
-    
+    console.log(e.target)
     //Recupero i dati dai campi del form
     const nameInput = document.getElementById('name')
     const descriptionInput = document.getElementById('description')
@@ -34,8 +34,8 @@ form.addEventListener('submit', (e) => {
     const newGuitar = new guitar(nameInput.value, descriptionInput.value, brandInput.value, imageInput.value, priceInput.value)
 
     //Inviamo il nuovo oggetto all'API
-    fetch(urlAPI, {
-        method: 'POST',
+    fetch(urlAPI + "/" + id, {
+        method: id ? 'PUT' : 'POST',
         headers: {
             'Authorization': auth,
             'Content-Type': 'application/json'},
@@ -43,10 +43,11 @@ form.addEventListener('submit', (e) => {
     })
     .then((res) => {
         if(res.ok){
-            alert('Prodotto salvato!')
+
+            id ? alert('Prodotto modificato!') : alert('Prodotto salvato!') 
             form.reset()
         } else {
-            throw new Error(`Problem: ${res}`)
+            throw new Error(`${res.status}`)
         }
     })
     .catch((err) => 
@@ -54,34 +55,12 @@ form.addEventListener('submit', (e) => {
 })
 
 //MODIFICO UN OGGETTO GIA ESISTENTE
-
-//ELIMINO UN OGGETTO GIA ESISTENTE
-const deleteItem = function(id) {
-    fetch(urlAPI + '/' + id, {
-        method: 'DELETE',
-        headers: {
-            'Authorization': auth},
-    })
-    .then((res) => {
-        if(res.ok){
-            console.log('Prodotto eliminato!')
-        } else {
-            throw new Error(`Problem: ${res.status}`)
-        }
-    })
-    .catch((err) => 
-        console.log('Problema nell\'eliminazione', err))
-}
-
-const resetForm() = function (){
-    document.getElementById('product-form').reset()
-}
-
 //Recupero l'ID prodotto dall'url
 const url = location.search
 const urlParameters = new URLSearchParams(url)
 const id = urlParameters.get('productId')
 
+//Recupero le informazione del prodotto e le inserisco nel form
 if(id){
     fetch(urlAPI + "/" + id, {
         headers: {
@@ -95,5 +74,35 @@ if(id){
             throw new Error(`${res.status}. Problema nel recupero dei dati.`)
         }
     })
-    .then(())
+    .then((guitar) => {
+    document.getElementById('name').value = guitar.name
+    document.getElementById('description').value = guitar.description
+    document.getElementById('brand').value = guitar.brand
+    document.getElementById('image-url').value = guitar.imageUrl
+    document.getElementById('price').value = guitar.price
+    })
+}
+
+//ELIMINO UN OGGETTO GIA ESISTENTE
+const deleteItem = function(id) {
+    fetch(urlAPI + '/' + id, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': auth},
+    })
+    .then((res) => {
+        if(res.ok){
+            console.log('Prodotto eliminato!')
+            location.assign('./homepage.html')
+        } else {
+            throw new Error(`Problem: ${res.status}`)
+        }
+    })
+    .catch((err) => 
+        console.log('Problema nell\'eliminazione', err))
+}
+
+//RESETTO TUTTI I CAMPI DEL PRODOTTO
+const resetForm = function (){
+    document.getElementById('product-form').reset()
 }
